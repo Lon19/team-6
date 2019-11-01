@@ -14,4 +14,15 @@ class User {
 
 }
 
-module.exports = User
+function fromJSON(user) {
+  console.log(user)
+  const { name, age, cancerBefore, interests, relateToCancer } = user
+  if (!name || !age || !cancerBefore || !interests || !relateToCancer)
+    return false;
+
+  return new User(name, age, cancerBefore, interests, relateToCancer)
+}
+
+module.exports = {
+  User, fromJSON
+}

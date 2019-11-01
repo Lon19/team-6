@@ -1,8 +1,12 @@
 // Application setup 
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+
+// Middleware
+app.use(bodyParser.json())
 
 // Locals
 const WebSockets = require('./src/WebSockets')
