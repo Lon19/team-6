@@ -5,10 +5,18 @@
 
 package org.ytt.code4good.viewModels
 
+import android.app.Application
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 
 data class ConvoViewModel(
-    val name : String,
-    val message : String,
-    val time : String
-) : ViewModel()
+    val app: Application,
+    var name : String,
+    @DrawableRes var imageSrc : Int,
+    var message : String,
+    var time : String
+) : AndroidViewModel(app) {
+    fun getDrawable() = ContextCompat.getDrawable(getApplication(), imageSrc)
+}

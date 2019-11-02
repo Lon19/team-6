@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.ytt.code4good.databinding.ListItemWithImageBinding
 import org.ytt.code4good.viewModels.ChatViewModel
-import java.util.*
 
 class ChatFragment(application: Application) : Fragment() {
 
@@ -136,7 +135,9 @@ class ChatFragment(application: Application) : Fragment() {
             holder.itemView.setOnClickListener {
                 it.context.startActivity(
                     Intent(it.context, ChatDetailActivity::class.java)
-                        .putExtra(EXTRA_CHAT_POS,position)
+//                        .putExtra(EXTRA_CHAT_POS, position)
+                        .putExtra(EXTRA_CHAT_IMAGE, item.imageSrc)
+                        .putExtra(EXTRA_CHAT_NAME, item.name)
                 )
             }
         }
@@ -154,6 +155,8 @@ class ChatFragment(application: Application) : Fragment() {
     }
 
     companion object {
-        const val EXTRA_CHAT_POS = "EXTRA_CHAT_POS"
+//        const val EXTRA_CHAT_POS = "EXTRA_CHAT_POS"
+        const val EXTRA_CHAT_IMAGE = "EXTRA_CHAT_IMAGE"
+        const val EXTRA_CHAT_NAME = "EXTRA_CHAT_NAME"
     }
 }

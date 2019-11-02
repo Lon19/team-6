@@ -32,15 +32,17 @@
 
         <TextView
             android:id="@+id/view_text_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
-            android:text="@{viewModel.name}"
+            android:text="@{viewModel.message}"
             android:textColor="@color/text_blue"
-            android:textSize="25sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@id/view_image"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Lisa" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/view_text_time"
+            tools:text="Wag one" />
 
         <TextView
             android:id="@+id/view_text_time"
@@ -52,17 +54,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="4:30 pm" />
-
-        <TextView
-            android:id="@+id/view_text_detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.detail}"
-            android:textColor="@color/text_blue"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@id/view_text_name"
-            app:layout_constraintTop_toBottomOf="@id/view_text_name"
-            tools:text="You two just played the Category game!" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
