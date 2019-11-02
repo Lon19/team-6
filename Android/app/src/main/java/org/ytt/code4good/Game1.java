@@ -7,14 +7,59 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.Locale;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 public class Game1 extends AppCompatActivity {
+
+    private TextView categoryText;
+    private TextView answerText;
+    private TextView answersDisplay;
+    private TextView timerText;
+    private ImageView R_Circle;
+    private ImageView L_Circle;
+
+
+    String answer = "answers";
+    int count;
+    Boolean gameEnd;
+
+    final Timer fiveSecondTimer = new Timer(11000, 10) {
+        public void onTick(long millisUntilFinished) {
+            count = (int)millisUntilFinished/50;
+
+            int minutes = (int) (millisUntilFinished / 1000) / 60;
+            int seconds = (int) (millisUntilFinished / 1000) % 60;
+
+            String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+            timerText.setText(timeFormatted);
+            if (count == 0) {
+                reset();
+            }
+            //timerText.setText(count);
+
+            // change time bvalue
+//            progressBar.setProgress(progress);
+        }
+
+        public void onFinish() {
+            // call function to display text and reset things
+        }
+    }.start();
+
+
+
+
     /**
      * Whether or not the system UI should be auto-hidden after
      * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
@@ -96,20 +141,96 @@ public class Game1 extends AppCompatActivity {
         mContentView = findViewById(R.id.fullscreen_content);
 
 
+        R_Circle = findViewById(R.id.R_Circle);
+        L_Circle = findViewById(R.id.L_Circle);
+        categoryText = findViewById(R.id.categoryText);
+        answerText = findViewById(R.id.answerText);
+        answersDisplay = findViewById(R.id.answersDisplay);
+        timerText = findViewById(R.id.timer);
+
+        timerText.setText("5");
+
+        categoryText.setText("Category: Movies");
+        answersDisplay.setText(answer);
+        answerText.setHint("Answer");
+
+        fiveSecondTimer.start();
+
+        // Hide L_circle
+        L_Circle.setVisibility(View.VISIBLE);
+        R_Circle.setVisibility(View.INVISIBLE);
+
+        //put in while loop???
+        answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                // display new answer
+                answer += answerText.getText().toString() + "\n";
+
+                answersDisplay.setText(answer);
+
+                // swicth players
+                // change yellow circle display
+
+                // clear text
+                reset();
+                return true;
+            }
+        });
+
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
+        /*mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });
+        });*/
+
+        /*userInput.setOnEditorActionListener(new onEditorActionListener() {
+
+
+        });*/
+
+
+        // set listener for answer text
+        /*answerText.setOnClickListener(new onClickListener(){
+
+        })*/
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        // Set category text as something for default
+
+
     }
 
+    /*public void onClick(View v)
+    {
+
+        answerText.getText();
+    }*/
+
+
+    // Used to reset input & timer for next player's round
+    private void reset() {
+        answerText.setText("");
+
+        if (L_Circle.getVisibility() == View.VISIBLE){
+            R_Circle.setVisibility(View.VISIBLE);
+            L_Circle.setVisibility(View.INVISIBLE);
+        } else {
+            L_Circle.setVisibility(View.VISIBLE);
+            R_Circle.setVisibility(View.INVISIBLE);
+        }
+
+
+        // reset timer
+        fiveSecondTimer.start();
+
+    }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
