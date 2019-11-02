@@ -5,17 +5,15 @@
 
 package org.ytt.code4good
 
-import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,10 +24,10 @@ class MainActivity : AppCompatActivity() {
         val needInit = needInit()
 
         if (needInit()) {
-            // Intent to init activity
+            // TODO Intent to init activity
         }
 
-        val viewManager = LinearLayoutManager(this)
+        /*val viewManager = LinearLayoutManager(this)
         val viewAdapter = MyAdapter(Array(100) { "$it" })
 
         findViewById<RecyclerView>(R.id.view_list).apply {
@@ -39,6 +37,26 @@ class MainActivity : AppCompatActivity() {
 
             adapter = viewAdapter
 
+        }*/
+
+        val viewPager = findViewById<ViewPager>(R.id.view_pager).apply {
+            adapter = MyMainViewPagerAdapter(supportFragmentManager)
+            setOnTouchListener { _, _ -> true }
+        }
+
+        findViewById<BottomNavigationView>(R.id.bottom_nav).apply {
+            setOnNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.action_task -> viewPager.currentItem = 0
+                    R.id.action_game -> viewPager.currentItem = 1
+                    R.id.action_chat -> viewPager.currentItem = 2
+                    else -> viewPager.currentItem = 3
+                }
+
+                true
+            }
+
+            itemIconTintList = null
         }
     }
 
@@ -53,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         return age <= 0
     }
 
-    private class MyAdapter(private val myList: Array<String>) :
+    /*private class MyAdapter(private val myList: Array<String>) :
         RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         class MyViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 
@@ -75,6 +93,19 @@ class MainActivity : AppCompatActivity() {
 
 
         override fun getItemCount() = myList.size
+    }*/
+
+    private class MyMainViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+        override fun getItem(position: Int): Fragment {
+            return when (position) {
+                0 -> TaskFragment()
+                1 -> GameFragment()
+                2 -> ChatFragment()
+                else -> Fragment() // TODO Room
+            }
+        }
+
+        override fun getCount() = 4
     }
 
     companion object {
