@@ -11,10 +11,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.Locale;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -59,10 +59,13 @@ public class Game1Activity extends AppCompatActivity {
         L_Circle.setVisibility(View.VISIBLE); // start with L circle displaying
         R_Circle.setVisibility(View.INVISIBLE);
         //updateAnswer();
+
         answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                answersDisplay.append(answerText.getText().toString() + " ");   // Update answer
+                answersDisplay.append(answerText.getText().toString() + "\n");
+
+                // Update answer
                 reset();           // swicth player, change yellow circle display, and clear text
 
                 return true;
@@ -97,7 +100,7 @@ public class Game1Activity extends AppCompatActivity {
         answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                answersDisplay.append(answerText.getText().toString() + " ");   // Update answer
+                answersDisplay.append(answerText.getText().toString() + "\n");   // Update answer
                 reset();           // swicth player, change yellow circle display, and clear text
 
                 return true;
@@ -126,6 +129,14 @@ public class Game1Activity extends AppCompatActivity {
             if (count == 0) {
                 gameRunning = false;
                 timesUp.setVisibility(View.VISIBLE);
+                timesUp.setFocusable(true);
+                timesUp.setClickable(true);
+                timesUp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
                 // Current player loses
             }
@@ -165,12 +176,12 @@ public class Game1Activity extends AppCompatActivity {
             // Note that some of these constants are new as of API 16 (Jelly Bean)
             // and API 19 (KitKat). It is safe to use them, as they are inlined
             // at compile-time and do nothing on earlier devices.
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
+//                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         }
     };
     private View mControlsView;

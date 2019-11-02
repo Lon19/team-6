@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="@{viewModel.name}"
             android:textColor="@color/text_blue"
-            android:textSize="32sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/linear"
             app:layout_constraintStart_toEndOf="@id/view_cb"
