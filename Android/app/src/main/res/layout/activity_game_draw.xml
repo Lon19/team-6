@@ -42,22 +42,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/answerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:ems="10"
-        android:hint="What is the object?"
-        android:imeOptions="actionDone"
-        android:inputType="textCapWords"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryText"
-        app:layout_constraintVertical_bias="0.682"
-        tools:ignore="MissingConstraints, ContentDescription\" />
+<!--    <EditText-->
+<!--        android:id="@+id/answerText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+<!--        android:ems="10"-->
+<!--        android:hint="What is the object?"-->
+<!--        android:imeOptions="actionDone"-->
+<!--        android:inputType="textCapWords"-->
+<!--        android:text=""-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/categoryText"-->
+<!--        app:layout_constraintVertical_bias="0.682"-->
+<!--        tools:ignore="MissingConstraints, ContentDescription\" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fullscreen_content_controls"
@@ -90,6 +90,7 @@
             android:layout_marginBottom="16dp"
             android:fontFamily="casual"
             android:text="Done"
+            android:onClick="onClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

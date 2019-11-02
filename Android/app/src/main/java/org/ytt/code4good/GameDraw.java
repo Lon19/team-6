@@ -126,10 +126,12 @@ public class GameDraw extends AppCompatActivity {
 
     }
 
-    /*public void onClick() {
-        done.setVisibility(View.INVISIBLE);
-        paintView.setVisibility(View.INVISIBLE);
-    }*/
+    public void onClick(View view) {
+        //done.setVisibility(View.INVISIBLE);
+        //paintView.setVisibility(View.INVISIBLE);
+        hide();
+    }
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -183,4 +185,6 @@ public class GameDraw extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
+
+
 }
