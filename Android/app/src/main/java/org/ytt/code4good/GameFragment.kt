@@ -1,33 +1,38 @@
-/*
- * Created by Yip Tsz To on 11/2/19 2:01 AM
- * Copyright (c) 2019.
- */
-
 package org.ytt.code4good
 
 import android.app.Application
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import org.ytt.code4good.viewModels.GameViewModel
 
-class GameActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+class GameFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.activity_game, container, false)
 
-        val viewPager = findViewById<ViewPager>(R.id.view_pager)
-        viewPager.adapter = MyFragmentPagerAdapter(application, supportFragmentManager)
+        val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner)
+        viewPager.adapter = MyFragmentPagerAdapter(
+            activity!!.application,
+            activity!!.supportFragmentManager
+        )
 
-        val tab = findViewById<TabLayout>(R.id.tab_layout)
+        val tab = view.findViewById<TabLayout>(R.id.tab_layout)
         tab.setupWithViewPager(viewPager)
+
+        return view
     }
 
-
-    class MyFragmentPagerAdapter(private val application: Application, fm: FragmentManager) :
+    private class MyFragmentPagerAdapter(application: Application, fm: FragmentManager) :
         FragmentPagerAdapter(fm) {
         private val popularGamesList = listOf(
             GameViewModel(application, "1. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
