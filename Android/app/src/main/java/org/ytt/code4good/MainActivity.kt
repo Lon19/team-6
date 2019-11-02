@@ -7,6 +7,7 @@ package org.ytt.code4good
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -29,13 +30,13 @@ class MainActivity : AppCompatActivity() {
                     this, InitActivity::class.java
                 )
             )
-        } else if (showDaily()) {
+        } else if (showDaily()) {*/
             startActivity(
                 Intent(
                     this, DailyActivity::class.java
                 )
             )
-        }*/
+//        }
 
         val viewPager = findViewById<ViewPager>(R.id.view_pager).apply {
             adapter = MyMainViewPagerAdapter(supportFragmentManager, application)

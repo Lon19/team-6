@@ -26,7 +26,8 @@ class WelcomeFragment(private val event: OnForwardEvent) : Fragment() {
         var name = ""
         try {
             val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
-            name = sharedPref?.getString(MainActivity.PREF_NAME, "") ?: ""
+//            name = sharedPref?.getString(MainActivity.PREF_NAME, "") ?: "Lisa"
+            name = "Lisa"
         } catch (e: Resources.NotFoundException) {
         }
 

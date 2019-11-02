@@ -20,6 +20,7 @@
         android:text="Welcome Back,\nKitty"
         android:textColor="@color/text_blue"
         android:textSize="40sp"
+        android:lineSpacingMultiplier=".4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
