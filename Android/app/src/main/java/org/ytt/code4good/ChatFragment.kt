@@ -22,7 +22,7 @@ class ChatFragment(application: Application) : Fragment() {
     private val chats = listOf(
         ChatViewModel(
             application,
-            R.drawable.head1,
+            R.drawable.head2,
             "Amy",
             40,
             "You two just played the category game!",
@@ -64,7 +64,7 @@ class ChatFragment(application: Application) : Fragment() {
         ),
         ChatViewModel(
             application,
-            R.drawable.head1,
+            R.drawable.head4,
             "Hannah",
             0,
             "You two just played the category game!",
@@ -135,7 +135,9 @@ class ChatFragment(application: Application) : Fragment() {
             holder.itemView.setOnClickListener {
                 it.context.startActivity(
                     Intent(it.context, ChatDetailActivity::class.java)
-                        .putExtra(EXTRA_CHAT_POS,position)
+//                        .putExtra(EXTRA_CHAT_POS, position)
+                        .putExtra(EXTRA_CHAT_IMAGE, item.imageSrc)
+                        .putExtra(EXTRA_CHAT_NAME, item.name)
                 )
             }
         }
@@ -153,6 +155,8 @@ class ChatFragment(application: Application) : Fragment() {
     }
 
     companion object {
-        const val EXTRA_CHAT_POS = "EXTRA_CHAT_POS"
+//        const val EXTRA_CHAT_POS = "EXTRA_CHAT_POS"
+        const val EXTRA_CHAT_IMAGE = "EXTRA_CHAT_IMAGE"
+        const val EXTRA_CHAT_NAME = "EXTRA_CHAT_NAME"
     }
 }
