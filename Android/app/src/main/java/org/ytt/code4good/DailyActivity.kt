@@ -6,7 +6,6 @@
 package org.ytt.code4good
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -14,7 +13,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 
 class DailyActivity : AppCompatActivity(), WelcomeFragment.OnForwardEvent,
-    FeelingFragment.OnForwardEvent,NewFriendFragment.OnForwardEvent {
+    FeelingFragment.OnForwardEvent, NewFriendFragment.OnForwardEvent, WhoFragment.OnForwardEvent,
+    TopicFragment.OnForwardEvent {
     lateinit var viewPager: ViewPager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +23,8 @@ class DailyActivity : AppCompatActivity(), WelcomeFragment.OnForwardEvent,
         viewPager = findViewById<ViewPager>(R.id.view_pager_daily).apply {
             adapter = DailyViewPagerAdapter(
                 supportFragmentManager,
+                this@DailyActivity,
+                this@DailyActivity,
                 this@DailyActivity,
                 this@DailyActivity,
                 this@DailyActivity
@@ -35,14 +37,18 @@ class DailyActivity : AppCompatActivity(), WelcomeFragment.OnForwardEvent,
         fm: FragmentManager,
         val welcomeEvent: WelcomeFragment.OnForwardEvent,
         val feelingEvent: FeelingFragment.OnForwardEvent,
-        val newFriendEvent: NewFriendFragment.OnForwardEvent
+        val newFriendEvent: NewFriendFragment.OnForwardEvent,
+        val whoEvent: WhoFragment.OnForwardEvent,
+        val topicEvent: TopicFragment.OnForwardEvent
     ) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> WelcomeFragment(welcomeEvent)
                 1 -> FeelingFragment(feelingEvent)
-                else -> NewFriendFragment(newFriendEvent)
+                2 -> NewFriendFragment(newFriendEvent)
+                3 -> WhoFragment(whoEvent)
+                else -> TopicFragment(topicEvent)
             }
         }
 
@@ -63,5 +69,13 @@ class DailyActivity : AppCompatActivity(), WelcomeFragment.OnForwardEvent,
 
     override fun newFriendExitListener() {
         finish()
+    }
+
+    override fun whoTouchListener() {
+        viewPager.currentItem++
+    }
+
+    override fun topicTouchListener() {
+        finish() // TODO ?
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Yip Tsz To on 11/2/19 5:02 AM.
+  ~ Created by Yip Tsz To on 11/2/19 5:48 AM.
   ~ Copyright (c) 2019.
   -->
 
@@ -18,10 +18,10 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/bill_smith"
         android:gravity="center_horizontal"
-        android:text="How are you\nfeeling today?"
+        android:lineSpacingMultiplier=".6"
+        android:text="What would you\nlike to\ntalk about?"
         android:textColor="@color/text_blue"
         android:textSize="35sp"
-        android:lineSpacingMultiplier=".6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -33,9 +33,10 @@
         android:layout_marginHorizontal="40dp"
         android:background="@android:color/white"
         android:tag="0"
-        android:text="Energetic!"
+        android:text="My Day"
         android:textColor="@color/text_blue"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/view_feeling_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_text" />
@@ -47,7 +48,7 @@
         android:layout_marginHorizontal="40dp"
         android:background="@android:color/white"
         android:tag="1"
-        android:text="I'm feeling great!"
+        android:text="My Treatment"
         android:textColor="@color/text_blue"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/view_feeling_2"
@@ -62,7 +63,7 @@
         android:layout_marginHorizontal="40dp"
         android:background="@android:color/white"
         android:tag="2"
-        android:text="A bit tired"
+        android:text="My Concerns"
         android:textColor="@color/text_blue"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/view_feeling_3"
@@ -77,24 +78,42 @@
         android:layout_marginHorizontal="40dp"
         android:background="@android:color/white"
         android:tag="3"
-        android:text="Sad"
+        android:text="Friendships"
         android:textColor="@color/text_blue"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/view_image"
+        app:layout_constraintBottom_toTopOf="@+id/view_feeling_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view_feeling_2" />
 
-
-    <ImageView
-        android:id="@+id/view_image"
+    <Button
+        android:id="@+id/view_feeling_4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="80dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/buddy_heart"
+        android:layout_marginHorizontal="40dp"
+        android:background="@android:color/white"
+        android:tag="4"
+        android:text="Dreams"
+        android:textColor="@color/text_blue"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/view_feeling_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_feeling_3" />
+
+    <Button
+        android:id="@+id/view_feeling_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:background="@android:color/white"
+        android:tag="4"
+        android:text="Random"
+        android:textColor="@color/text_blue"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_feeling_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

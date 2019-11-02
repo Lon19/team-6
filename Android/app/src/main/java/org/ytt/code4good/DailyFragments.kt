@@ -105,3 +105,71 @@ class NewFriendFragment(event: OnForwardEvent) : Fragment() {
         fun newFriendExitListener()
     }
 }
+
+class WhoFragment(val event: OnForwardEvent) : Fragment() {
+    private val listener = View.OnClickListener {
+        val tag = it.tag
+        event.whoTouchListener()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.frag_daily_who, container, false)
+
+        val button0 = view.findViewById<Button>(R.id.view_feeling_0)
+        val button1 = view.findViewById<Button>(R.id.view_feeling_1)
+        val button2 = view.findViewById<Button>(R.id.view_feeling_2)
+        val button3 = view.findViewById<Button>(R.id.view_feeling_3)
+        val button4 = view.findViewById<Button>(R.id.view_feeling_4)
+
+        button0.setOnClickListener(listener)
+        button1.setOnClickListener(listener)
+        button2.setOnClickListener(listener)
+        button3.setOnClickListener(listener)
+        button4.setOnClickListener(listener)
+
+        return view
+    }
+
+    interface OnForwardEvent {
+        fun whoTouchListener()
+    }
+}
+
+class TopicFragment(val event: OnForwardEvent) : Fragment() {
+    private val listener = View.OnClickListener {
+        val tag = it.tag
+        event.topicTouchListener()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.frag_daily_topic, container, false)
+
+        val button0 = view.findViewById<Button>(R.id.view_feeling_0)
+        val button1 = view.findViewById<Button>(R.id.view_feeling_1)
+        val button2 = view.findViewById<Button>(R.id.view_feeling_2)
+        val button3 = view.findViewById<Button>(R.id.view_feeling_3)
+        val button4 = view.findViewById<Button>(R.id.view_feeling_4)
+        val button5 = view.findViewById<Button>(R.id.view_feeling_5)
+
+        button0.setOnClickListener(listener)
+        button1.setOnClickListener(listener)
+        button2.setOnClickListener(listener)
+        button3.setOnClickListener(listener)
+        button4.setOnClickListener(listener)
+        button5.setOnClickListener(listener)
+
+        return view
+    }
+
+    interface OnForwardEvent {
+        fun topicTouchListener()
+    }
+}
