@@ -153,5 +153,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.391" />
 
+    <ImageView
+        android:id="@+id/timesUp"
+        android:layout_width="240dp"
+        android:layout_height="216dp"
+        android:layout_marginBottom="180dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content"
+        app:layout_constraintEnd_toEndOf="@+id/fullscreen_content"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/fullscreen_content"
+        app:srcCompat="@drawable/timesup" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -107,10 +107,14 @@ public class Game1 extends AppCompatActivity {
             String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
 //            answersDisplay.setText(answer);
 
+            ImageView timesUp = findViewById(R.id.timesUp);
+
+            timesUp.setVisibility(View.INVISIBLE);
 
             timerText.setText(timeFormatted);
             if (count == 0) {
                 gameRunning = false;
+                timesUp.setVisibility(View.VISIBLE);
 
                 // Current player loses
             }
