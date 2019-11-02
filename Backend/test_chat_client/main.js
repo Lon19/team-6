@@ -1,7 +1,10 @@
 console.log('Initialised!')
 
 // Connect
-const socketConnection = io.connect('http://localhost:8080')
+LOCAL_ENDPOINT = 'localhost'
+AWS_ENDPOINT = '18.200.196.115'
+
+const socketConnection = io.connect(`http://${AWS_ENDPOINT}:8080`)
 
 let socketId = null
 socketConnection.on('connect', () => {
