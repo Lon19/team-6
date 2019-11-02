@@ -9,7 +9,6 @@ import android.app.Application
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 
 data class ConvoViewModel(
     val app: Application,

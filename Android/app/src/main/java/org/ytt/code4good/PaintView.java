@@ -20,12 +20,12 @@ import java.util.ArrayList;
 
 public class PaintView extends View {
 
-    public static final int DEFAULT_BG_COLOR = Color.WHITE;
+    private static final int DEFAULT_BG_COLOR = Color.WHITE;
     private static final float TOUCH_TOLERANCE = 4;
     private float mX, mY;
     private Path mPath;
-    private Paint mPaint;
-    private ArrayList<FingerPath> paths = new ArrayList<>();
+    private final Paint mPaint;
+    private final ArrayList<FingerPath> paths = new ArrayList<>();
     private int backgroundColor = DEFAULT_BG_COLOR;
 //    private boolean emboss;
 //    private boolean blur;
@@ -33,7 +33,7 @@ public class PaintView extends View {
 //    private MaskFilter mBlur;
     private Bitmap mBitmap;
     private Canvas mCanvas;
-    private Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+    private final Paint mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
     public PaintView(Context context) {
         this(context, null);

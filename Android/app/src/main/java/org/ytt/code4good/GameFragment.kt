@@ -41,10 +41,10 @@ class GameFragment(private val application: Application) : Fragment() {
     private class MyFragmentPagerAdapter(application: Application, fm: FragmentManager) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val popularGamesList = listOf(
-            GameViewModel(application, "1. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
+            GameViewModel(application, "1. Categories", R.drawable.ic_game_cate, "Quiz"),
             GameViewModel(application, "2. TwentyNine", R.drawable.ic_game_twentynine, "Strategy"),
             GameViewModel(application, "3. Chess", R.drawable.ic_game_chess, "Strategy"),
-            GameViewModel(application, "4. Pictionary", R.drawable.ic_game_ninja, "Art"),
+            GameViewModel(application, "4. Pictionary", R.drawable.ic_game_piction, "Art"),
             GameViewModel(application, "5. Jungle Free", R.drawable.ic_game_jungle, "Adventure"),
             GameViewModel(application, "6. Connect Four", R.drawable.ic_game_connect4, "Strategy"),
             GameViewModel(application, "7. Words for Us", R.drawable.ic_game_word, "Education"),

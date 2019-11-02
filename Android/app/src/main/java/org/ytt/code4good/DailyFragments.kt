@@ -16,7 +16,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
-class WelcomeFragment(val event: OnForwardEvent) : Fragment() {
+class WelcomeFragment(private val event: OnForwardEvent) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +42,7 @@ class WelcomeFragment(val event: OnForwardEvent) : Fragment() {
     }
 }
 
-class FeelingFragment(val event: OnForwardEvent) : Fragment() {
+class FeelingFragment(private val event: OnForwardEvent) : Fragment() {
     private val listener = View.OnClickListener {
         val tag = it.tag
         event.feelingTouchListener()
@@ -106,7 +106,7 @@ class NewFriendFragment(event: OnForwardEvent) : Fragment() {
     }
 }
 
-class WhoFragment(val event: OnForwardEvent) : Fragment() {
+class WhoFragment(private val event: OnForwardEvent) : Fragment() {
     private val listener = View.OnClickListener {
         val tag = it.tag
         event.whoTouchListener()
@@ -139,7 +139,7 @@ class WhoFragment(val event: OnForwardEvent) : Fragment() {
     }
 }
 
-class TopicFragment(val event: OnForwardEvent) : Fragment() {
+class TopicFragment(private val event: OnForwardEvent) : Fragment() {
     private val listener = View.OnClickListener {
         val tag = it.tag
         event.topicTouchListener()

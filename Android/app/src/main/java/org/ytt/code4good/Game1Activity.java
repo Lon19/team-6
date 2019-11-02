@@ -1,28 +1,141 @@
 package org.ytt.code4good;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import java.util.Locale;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class GameDraw extends AppCompatActivity {
+public class Game1Activity extends AppCompatActivity {
 
-    private PaintView paintView;
-    private TextView drawSomething;
-    private Button done;
     private TextView answerText;
+    private TextView answersDisplay;
+    private TextView timerText;
+    private ImageView R_Circle;
+    private ImageView L_Circle;
+
+    private int count;
+    private Boolean gameRunning = false;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_game1);
+
+        mVisible = true;
+        mControlsView = findViewById(R.id.fullscreen_content_controls);
+        mContentView = findViewById(R.id.fullscreen_content);
+
+
+        R_Circle = findViewById(R.id.R_Circle);
+        L_Circle = findViewById(R.id.L_Circle);
+        TextView categoryText = findViewById(R.id.categoryText);
+        answerText = findViewById(R.id.answerText);
+        answersDisplay = findViewById(R.id.answersDisplay);
+        timerText = findViewById(R.id.timer);
+
+
+        categoryText.setText("Category: Movies");
+        answerText.setHint("Answer");
+
+        fiveSecondTimer.start();
+        gameRunning = true;
+
+        L_Circle.setVisibility(View.VISIBLE); // start with L circle displaying
+        R_Circle.setVisibility(View.INVISIBLE);
+        //updateAnswer();
+        answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                answersDisplay.append(answerText.getText().toString() + " ");   // Update answer
+                reset();           // swicth player, change yellow circle display, and clear text
+
+                return true;
+            }
+        });
+
+    }
+
+    // Used to reset input & timer for next player's round
+    private void reset() {
+        answerText.setText("");
+
+        if (L_Circle.getVisibility() == View.VISIBLE) {
+            R_Circle.setVisibility(View.VISIBLE);
+            L_Circle.setVisibility(View.INVISIBLE);
+        } else {
+            L_Circle.setVisibility(View.VISIBLE);
+            R_Circle.setVisibility(View.INVISIBLE);
+        }
+
+        fiveSecondTimer.start();         // reset timer
+
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
+    }
+
+    private void updateAnswer() {
+        answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                answersDisplay.append(answerText.getText().toString() + " ");   // Update answer
+                reset();           // swicth player, change yellow circle display, and clear text
+
+                return true;
+            }
+        });
+    }
+
+
+    //Count down timer
+    private final Timer fiveSecondTimer = new Timer(11000, 10) {
+        public void onTick(long millisUntilFinished) {
+            count = (int) millisUntilFinished / 50;
+
+            int minutes = (int) (millisUntilFinished / 1000) / 60;
+            int seconds = (int) (millisUntilFinished / 1000) % 60;
+
+            String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+            ImageView timesUp = findViewById(R.id.timesUp);
+
+            timesUp.setVisibility(View.INVISIBLE);
+
+            timerText.setText(timeFormatted);
+
+
+            if (count == 0) {
+                gameRunning = false;
+                timesUp.setVisibility(View.VISIBLE);
+
+                // Current player loses
+            }
+        }
+
+        public void onFinish() {
+            // call function to display text and reset things
+        }
+    }.start();
+
 
     /**
      * Whether or not the system UI should be auto-hidden after
@@ -94,44 +207,6 @@ public class GameDraw extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_draw);
-        drawSomething = findViewById(R.id.drawSomething);
-        paintView = findViewById(R.id.paintView);
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        paintView.init(metrics);
-
-        mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
-
-
-        // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                toggle();
-            }
-        });
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        //findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        done = findViewById(R.id.done);
-
-
-    }
-
-    public void onClick(View view) {
-        //done.setVisibility(View.INVISIBLE);
-        //paintView.setVisibility(View.INVISIBLE);
-        hide();
-    }
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -185,6 +260,4 @@ public class GameDraw extends AppCompatActivity {
         mHideHandler.removeCallbacks(mHideRunnable);
         mHideHandler.postDelayed(mHideRunnable, delayMillis);
     }
-
-
 }

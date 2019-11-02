@@ -3,12 +3,12 @@ package org.ytt.code4good;
 import android.graphics.Color;
 import android.graphics.Path;
 
-public class FingerPath {
-    public int color;
+class FingerPath {
+    public final int color;
 //    public boolean emboss;
 //    public boolean blur;
-    public int strokeWidth;
-    public Path path;
+    public final int strokeWidth;
+    public final Path path;
 
     public FingerPath(Path path) {
         this.color = Color.BLACK;

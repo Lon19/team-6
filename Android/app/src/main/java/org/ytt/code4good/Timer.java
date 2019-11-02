@@ -4,11 +4,11 @@ package org.ytt.code4good;
 import android.os.CountDownTimer;
 
 public abstract class Timer {
-    private long millisInFuture;
-    private long countDownInterval;
+    private final long millisInFuture;
+    private final long countDownInterval;
     private long millisRemaining;
 
-    CountDownTimer countDownTimer = null;
+    private CountDownTimer countDownTimer = null;
 
     private boolean isPaused = true;
 
@@ -39,15 +39,15 @@ public abstract class Timer {
      *
      * @param millisUntilFinished The amount of time until finished.
      */
-    public abstract void onTick(long millisUntilFinished);
+    protected abstract void onTick(long millisUntilFinished);
     /**
      * Callback fired when the time is up.
      */
-    public abstract void onFinish();
+    protected abstract void onFinish();
     /**
      * Cancel the countdown.
      */
-    public final void cancel(){
+    private void cancel(){
         if(countDownTimer!=null){
             countDownTimer.cancel();
         }
