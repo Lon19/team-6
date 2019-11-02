@@ -18,7 +18,7 @@ class GameFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.activity_game, container, false)
+        val view = inflater.inflate(R.layout.frag_game, container, false)
 
         val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner).also {
             it.adapter = MyFragmentPagerAdapter(

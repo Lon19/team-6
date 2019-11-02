@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     private class MyMainViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
-                0 -> Fragment() // Task
+                0 -> TaskFragment() // Task
                 1 -> GameFragment()
                 2 -> Fragment() // Chat
                 else -> Fragment() // Room
