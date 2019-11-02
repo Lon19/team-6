@@ -29,10 +29,7 @@
         <activity android:name=".ChatDetailActivity" />
         <activity
             android:name=".Game1Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:exported="true"
-            android:label="@string/title_activity_game1"
-            android:theme="@style/FullscreenTheme" />
+            android:label="@string/title_activity_game1" />
         <activity android:name=".StartingActivity" />
         <activity android:name=".Game2Activity" />
     </application>

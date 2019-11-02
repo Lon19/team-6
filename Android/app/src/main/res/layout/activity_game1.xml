@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cute_cloud"
+    android:background="@drawable/background_game"
     tools:context=".Game1Activity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
@@ -43,55 +43,49 @@
 
     <ImageView
         android:id="@+id/L_Circle"
-        android:layout_width="141dp"
-        android:layout_height="188dp"
-        android:layout_marginBottom="545dp"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/yellow_circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/R_Circle"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints, ContentDescription" />
+        app:layout_constraintBottom_toBottomOf="@id/LeftHead"
+        app:layout_constraintEnd_toEndOf="@id/LeftHead"
+        app:layout_constraintStart_toStartOf="@id/LeftHead"
+        app:layout_constraintTop_toTopOf="@id/LeftHead" />
 
     <ImageView
         android:id="@+id/R_Circle"
-        android:layout_width="141dp"
-        android:layout_height="188dp"
-        android:layout_marginStart="268dp"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
         android:src="@drawable/yellow_circle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.001"
-        tools:ignore="MissingConstraints, ContentDescription" />
+        app:layout_constraintBottom_toBottomOf="@id/RightHead"
+        app:layout_constraintEnd_toEndOf="@id/RightHead"
+        app:layout_constraintStart_toStartOf="@id/RightHead"
+        app:layout_constraintTop_toTopOf="@id/RightHead" />
 
     <ImageView
         android:id="@+id/LeftHead"
-        android:layout_width="162dp"
+        android:layout_width="wrap_content"
         android:layout_height="125dp"
-        android:layout_marginStart="56dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/head_one"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/R_Circle"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintEnd_toStartOf="@id/RightHead"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.054"
-        tools:ignore="MissingConstraints, ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@id/answerText" />
 
     <ImageView
-        android:id="@+id/rightHead"
-        android:layout_width="130dp"
-        android:layout_height="180dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="550dp"
+        android:id="@+id/RightHead"
+        android:layout_width="wrap_content"
+        android:layout_height="125dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:src="@drawable/head_two"
-        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content"
-        app:layout_constraintStart_toStartOf="@+id/R_Circle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints, ContentDescription" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/LeftHead"
+        app:layout_constraintTop_toBottomOf="@id/answerText" />
 
     <TextView
         android:id="@+id/categoryText"
@@ -100,69 +94,55 @@
         android:layout_marginTop="50dp"
         android:text=""
         android:textSize="38sp"
-        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LeftHead"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints, ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/LeftHead" />
 
     <EditText
         android:id="@+id/answerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:clickable="true"
         android:ems="10"
         android:hint=""
         android:imeOptions="actionDone"
         android:inputType="textCapWords"
         android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/categoryText"
-        app:layout_constraintVertical_bias="0.682"
-        tools:ignore="MissingConstraints, ContentDescription\" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/answersDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal"
-        />
+        app:layout_constraintTop_toBottomOf="@id/categoryText" />
 
     <TextView
         android:id="@+id/timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.391" />
+        app:layout_constraintTop_toBottomOf="@id/LeftHead" />
 
     <ImageView
         android:id="@+id/timesUp"
-        android:layout_width="240dp"
+        android:layout_width="wrap_content"
         android:layout_height="216dp"
         android:layout_marginBottom="180dp"
+        android:adjustViewBounds="true"
         android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/fullscreen_content"
-        app:layout_constraintEnd_toEndOf="@+id/fullscreen_content"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/fullscreen_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/timesup" />
 
 
