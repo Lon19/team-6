@@ -20,11 +20,12 @@ class GameFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.activity_game, container, false)
 
-        val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner)
-        viewPager.adapter = MyFragmentPagerAdapter(
-            activity!!.application,
-            activity!!.supportFragmentManager
-        )
+        val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner).also {
+            it.adapter = MyFragmentPagerAdapter(
+                activity!!.application,
+                activity!!.supportFragmentManager
+            )
+        }
 
         val tab = view.findViewById<TabLayout>(R.id.tab_layout)
         tab.setupWithViewPager(viewPager)
