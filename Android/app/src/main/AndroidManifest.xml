@@ -4,6 +4,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.ytt.code4good">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -15,10 +16,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/NoActionBar">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,6 +26,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".InitActivity" />
+        <activity android:name=".DailyActivity" />
     </application>
-
 </manifest>
