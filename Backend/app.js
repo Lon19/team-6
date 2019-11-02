@@ -28,5 +28,8 @@ const users = {}
 WebSockets.initialise(io, users)
 ApiGateway.initialise(app, users)
 
+app.use(express.static(`${__dirname}/test_chat_client`))
+app.get('/', (req, res) => res.sendFile('./test_chat_client/index.html'))
+
 server.listen(WS_PORT, () => console.log(`WebSockets listening on port ${WS_PORT}`))
 app.listen(API_PORT, () => console.log(`APIs listening on port ${API_PORT}`))

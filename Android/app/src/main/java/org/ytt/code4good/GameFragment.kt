@@ -1,3 +1,8 @@
+/*
+ * Created by Yip Tsz To on 11/2/19 4:18 AM.
+ * Copyright (c) 2019.
+ */
+
 package org.ytt.code4good
 
 import android.app.Application
@@ -12,7 +17,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import org.ytt.code4good.viewModels.GameViewModel
 
-class GameFragment : Fragment() {
+class GameFragment(private val application: Application) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,8 +27,8 @@ class GameFragment : Fragment() {
 
         val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner).also {
             it.adapter = MyFragmentPagerAdapter(
-                activity!!.application,
-                activity!!.supportFragmentManager
+                application,
+                childFragmentManager
             )
         }
 
@@ -34,7 +39,7 @@ class GameFragment : Fragment() {
     }
 
     private class MyFragmentPagerAdapter(application: Application, fm: FragmentManager) :
-        FragmentPagerAdapter(fm) {
+        FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val popularGamesList = listOf(
             GameViewModel(application, "1. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
             GameViewModel(application, "2. TwentyNine", R.drawable.ic_game_twentynine, "Strategy"),
@@ -42,10 +47,8 @@ class GameFragment : Fragment() {
             GameViewModel(application, "4. Pictionary", R.drawable.ic_game_ninja, "Art"),
             GameViewModel(application, "5. Jungle Free", R.drawable.ic_game_jungle, "Adventure"),
             GameViewModel(application, "6. Connect Four", R.drawable.ic_game_connect4, "Strategy"),
-            GameViewModel(application, "7. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
-            GameViewModel(application, "7. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
-            GameViewModel(application, "7. Ninja Fight", R.drawable.ic_game_ninja, "Action"),
-            GameViewModel(application, "8. Ninja Fight", R.drawable.ic_game_ninja, "Action")
+            GameViewModel(application, "7. Words for Us", R.drawable.ic_game_word, "Education"),
+            GameViewModel(application, "8. Maths Challenge", R.drawable.ic_game_math, "Education")
         )
 
         private val categories =
