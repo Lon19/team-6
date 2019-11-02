@@ -7,7 +7,6 @@ package org.ytt.code4good
 
 import android.app.Application
 import android.content.Context
-import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

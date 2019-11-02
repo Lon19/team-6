@@ -15,7 +15,7 @@ import androidx.viewpager.widget.ViewPager
 class DailyActivity : AppCompatActivity(), WelcomeFragment.OnForwardEvent,
     FeelingFragment.OnForwardEvent, NewFriendFragment.OnForwardEvent, WhoFragment.OnForwardEvent,
     TopicFragment.OnForwardEvent {
-    lateinit var viewPager: ViewPager
+    private lateinit var viewPager: ViewPager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily)

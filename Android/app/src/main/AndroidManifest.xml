@@ -9,7 +9,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,6 +26,14 @@
         </activity>
         <activity android:name=".InitActivity" />
         <activity android:name=".DailyActivity" />
-        <activity android:name=".ChatDetailActivity"/>
+        <activity android:name=".ChatDetailActivity" />
+        <activity
+            android:name=".Game1Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:label="@string/title_activity_game1"
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".StartingActivity" />
+        <activity android:name=".Game2Activity" />
     </application>
 </manifest>

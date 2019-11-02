@@ -31,18 +31,18 @@ public class CircleImageView extends AppCompatImageView {
     private static final int DEF_PRESS_HIGHLIGHT_COLOR = 0x32000000;
 
     private Shader mBitmapShader;
-    private Matrix mShaderMatrix;
+    private final Matrix mShaderMatrix;
 
-    private RectF mBitmapDrawBounds;
-    private RectF mStrokeBounds;
+    private final RectF mBitmapDrawBounds;
+    private final RectF mStrokeBounds;
 
     private Bitmap mBitmap;
 
-    private Paint mBitmapPaint;
-    private Paint mStrokePaint;
-    private Paint mPressedPaint;
+    private final Paint mBitmapPaint;
+    private final Paint mStrokePaint;
+    private final Paint mPressedPaint;
 
-    private boolean mInitialized;
+    private final boolean mInitialized;
     private boolean mPressed;
     private boolean mHighlightEnable;
 
@@ -56,7 +56,6 @@ public class CircleImageView extends AppCompatImageView {
         int strokeColor = Color.TRANSPARENT;
         float strokeWidth = 0;
         boolean highlightEnable = true;
-        int highlightColor = DEF_PRESS_HIGHLIGHT_COLOR;
 
         /*if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, 0, 0);
@@ -79,7 +78,7 @@ public class CircleImageView extends AppCompatImageView {
         mStrokePaint.setStrokeWidth(strokeWidth);
 
         mPressedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPressedPaint.setColor(highlightColor);
+        mPressedPaint.setColor(DEF_PRESS_HIGHLIGHT_COLOR);
         mPressedPaint.setStyle(Paint.Style.FILL);
 
         mHighlightEnable = highlightEnable;
@@ -129,7 +128,7 @@ public class CircleImageView extends AppCompatImageView {
         boolean processed = false;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (!isInCircle(event.getX(), event.getY())) {
+                if (isInCircle(event.getX(), event.getY())) {
                     return false;
                 }
                 processed = true;
@@ -141,7 +140,7 @@ public class CircleImageView extends AppCompatImageView {
                 processed = true;
                 mPressed = false;
                 invalidate();
-                if (!isInCircle(event.getX(), event.getY())) {
+                if (isInCircle(event.getX(), event.getY())) {
                     return false;
                 }
                 break;
@@ -195,23 +194,23 @@ public class CircleImageView extends AppCompatImageView {
         invalidate();
     }
 
-    protected void drawHighlight(Canvas canvas) {
+    private void drawHighlight(Canvas canvas) {
         if (mHighlightEnable && mPressed) {
             canvas.drawOval(mBitmapDrawBounds, mPressedPaint);
         }
     }
 
-    protected void drawStroke(Canvas canvas) {
+    private void drawStroke(Canvas canvas) {
         if (mStrokePaint.getStrokeWidth() > 0f) {
             canvas.drawOval(mStrokeBounds, mStrokePaint);
         }
     }
 
-    protected void drawBitmap(Canvas canvas) {
+    private void drawBitmap(Canvas canvas) {
         canvas.drawOval(mBitmapDrawBounds, mBitmapPaint);
     }
 
-    protected void updateCircleDrawBounds(RectF bounds) {
+    private void updateCircleDrawBounds(RectF bounds) {
         float contentWidth = getWidth() - getPaddingLeft() - getPaddingRight();
         float contentHeight = getHeight() - getPaddingTop() - getPaddingBottom();
 
@@ -290,6 +289,6 @@ public class CircleImageView extends AppCompatImageView {
         double distance = Math.sqrt(
                 Math.pow(mBitmapDrawBounds.centerX() - x, 2) + Math.pow(mBitmapDrawBounds.centerY() - y, 2)
         );
-        return distance <= (mBitmapDrawBounds.width() / 2);
+        return !(distance <= (mBitmapDrawBounds.width() / 2));
     }
 }

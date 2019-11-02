@@ -5,7 +5,6 @@
 
 package org.ytt.code4good
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 class InitActivity : AppCompatActivity() {

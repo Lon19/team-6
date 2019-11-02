@@ -38,10 +38,10 @@
             android:text="@{viewModel.message}"
             android:textColor="@color/text_blue"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@id/view_image"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/view_text_time"
+            app:layout_constraintStart_toEndOf="@id/view_image"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Wag one" />
 
         <TextView

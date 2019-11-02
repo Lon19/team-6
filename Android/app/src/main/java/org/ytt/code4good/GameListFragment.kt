@@ -5,6 +5,7 @@
 
 package org.ytt.code4good
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -65,6 +66,16 @@ class GameListFragment(
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
             val item = mDataList[position]
             holder.bind(item)
+            holder.itemView.setOnClickListener {
+                it.context.startActivity(
+                    Intent(it.context,
+                        if (position < 3) {
+                            Game1Activity::class.java
+                        } else {
+                            Game2Activity::class.java
+                        })
+                )
+            }
         }
 
         override fun getItemCount() = mDataList.size
