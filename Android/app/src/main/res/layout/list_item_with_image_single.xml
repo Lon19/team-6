@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Created by Yip Tsz To on 11/2/19 4:18 AM.
+  ~ Created by Yip Tsz To on 11/2/19 9:06 AM.
   ~ Copyright (c) 2019.
   -->
 
@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="org.ytt.code4good.viewModels.ChatViewModel" />
+            type="org.ytt.code4good.viewModels.ConvoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -8,7 +8,6 @@ package org.ytt.code4good.viewModels
 import androidx.lifecycle.ViewModel
 
 data class ConvoViewModel(
-    val image : Int,
     val name : String,
     val message : String,
     val time : String

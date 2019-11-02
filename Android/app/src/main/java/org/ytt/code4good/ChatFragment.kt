@@ -16,13 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.ytt.code4good.databinding.ListItemWithImageBinding
 import org.ytt.code4good.viewModels.ChatViewModel
+import java.util.*
 
 class ChatFragment(application: Application) : Fragment() {
 
     private val chats = listOf(
         ChatViewModel(
             application,
-            R.drawable.head1,
+            R.drawable.head2,
             "Amy",
             40,
             "You two just played the category game!",
@@ -64,7 +65,7 @@ class ChatFragment(application: Application) : Fragment() {
         ),
         ChatViewModel(
             application,
-            R.drawable.head1,
+            R.drawable.head4,
             "Hannah",
             0,
             "You two just played the category game!",

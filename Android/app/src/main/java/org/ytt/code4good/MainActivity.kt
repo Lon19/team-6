@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (needInit()) {
+        /*if (needInit()) {
             startActivity(
                 Intent(
                     this, InitActivity::class.java
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     this, DailyActivity::class.java
                 )
             )
-        }
+        }*/
 
         val viewPager = findViewById<ViewPager>(R.id.view_pager).apply {
             adapter = MyMainViewPagerAdapter(supportFragmentManager, application)

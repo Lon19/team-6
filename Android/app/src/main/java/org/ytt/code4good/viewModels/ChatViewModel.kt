@@ -13,7 +13,7 @@ import androidx.lifecycle.AndroidViewModel
 
 data class ChatViewModel(
     val app: Application,
-    @DrawableRes private var imageSrc: Int,
+    @DrawableRes var imageSrc: Int,
     var name: String,
     var streak: Int,
     var detail: String,
