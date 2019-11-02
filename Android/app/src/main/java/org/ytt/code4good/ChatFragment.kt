@@ -5,6 +5,7 @@
 
 package org.ytt.code4good
 
+import android.app.Application
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,22 @@ import androidx.recyclerview.widget.RecyclerView
 import org.ytt.code4good.databinding.ListItemWithImageBinding
 import org.ytt.code4good.viewModels.ChatViewModel
 
-class ChatFragment : Fragment() {
+class ChatFragment(application: Application) : Fragment() {
+
+    private val chats = listOf(
+        ChatViewModel(application,R.drawable.head1,"Amy", 40, "You two just played the category game!","1:23 pm"),
+        ChatViewModel(application,R.drawable.head2,"Brian", 0, "How's it going!?","4:56 pm"),
+        ChatViewModel(application,R.drawable.head3,"Charlie", 0, "You two just played the Ninja Fight game!","7:00 pm"),
+        ChatViewModel(application,R.drawable.head4,"David", 0, "Eh I'm alright, wbu?","8:45 pm"),
+        ChatViewModel(application,R.drawable.head5,"Emily", 100, "You two just played the Twenty Nine game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head6,"Fred", 0, "You two just played the category game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head7,"George", 0, "You two just played the category game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head1,"Hannah", 0, "You two just played the category game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head2,"Izzy", 0, "You two just played the category game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head3,"Jamie", 4, "You two just played the category game!","4:45 pm"),
+        ChatViewModel(application,R.drawable.head4,"Kelvin", 0, "You two just played the category game!","4:45 pm")
+    )
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,13 +40,7 @@ class ChatFragment : Fragment() {
         val view = inflater.inflate(R.layout.frag_chat, container, false)
 
         val viewManager = LinearLayoutManager(activity)
-        val viewAdapter = ChatAdapter(List(10) {
-            ChatViewModel(
-                activity!!.application,
-                R.drawable.head_placeholder,
-                "I go to school by bus"
-            )
-        })
+        val viewAdapter = ChatAdapter(chats)
 
         view.findViewById<RecyclerView>(R.id.view_list).also {
             it.setHasFixedSize(true)

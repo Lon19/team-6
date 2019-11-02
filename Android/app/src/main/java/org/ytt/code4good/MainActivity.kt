@@ -5,6 +5,7 @@
 
 package org.ytt.code4good
 
+import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -23,13 +24,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*if (needInit()) {
+        if (needInit()) {
             startActivity(
                 Intent(
                     this, InitActivity::class.java
                 )
             )
-        } else */if (showDaily()) {
+        } else if (showDaily()) {
             startActivity(
                 Intent(
                     this, DailyActivity::class.java
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val viewPager = findViewById<ViewPager>(R.id.view_pager).apply {
-            adapter = MyMainViewPagerAdapter(supportFragmentManager)
+            adapter = MyMainViewPagerAdapter(supportFragmentManager, application)
             setOnTouchListener { _, _ -> true }
         }
 
@@ -58,6 +59,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val editor = getPreferences(Context.MODE_PRIVATE).edit()
+        editor.putLong(PREF_PREV_LOGIN, Date().time)
+        editor.apply()
+    }
+
     private fun needInit(): Boolean {
         val age: Int
         try {
@@ -71,7 +79,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun showDaily(): Boolean {
-        return true
+//        return true
         val previousLogin: Long
 
         try {
@@ -84,13 +92,13 @@ class MainActivity : AppCompatActivity() {
         return Date().time - previousLogin >= 86400000
     }
 
-    private class MyMainViewPagerAdapter(fm: FragmentManager) :
+    private class MyMainViewPagerAdapter(fm: FragmentManager, val application: Application) :
         FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> TaskFragment()
                 1 -> GameFragment()
-                2 -> ChatFragment()
+                2 -> ChatFragment(application)
                 else -> Fragment() // TODO Room
             }
         }

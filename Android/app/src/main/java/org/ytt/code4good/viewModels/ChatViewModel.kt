@@ -14,7 +14,10 @@ import androidx.lifecycle.AndroidViewModel
 data class ChatViewModel(
     val app: Application,
     @DrawableRes private var imageSrc: Int,
-    var text: String
+    var name: String,
+    var streak: Int,
+    var detail: String,
+    var time: String
 ) : AndroidViewModel(app) {
     fun getDrawable() = ContextCompat.getDrawable(getApplication(), imageSrc)
 }
