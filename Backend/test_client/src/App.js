@@ -11,6 +11,9 @@ import { Container } from '@material-ui/core';
 import MainView from './components/MainView';
 import ChatView from './components/ChatView';
 
+const LOCAL_ENDPOINT = 'localhost'
+const AWS_ENDPOINT = '18.200.196.115'
+
 class App extends Component {
 
   state = {
@@ -20,7 +23,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const socket = openSocket('http://localhost:8080')
+    const socket = openSocket(`http://${AWS_ENDPOINT}:8080`)
 
     socket.on('connect', () => this.setState({
       socket: socket,
