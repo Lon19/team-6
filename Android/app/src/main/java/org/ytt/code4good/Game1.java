@@ -31,11 +31,10 @@ public class Game1 extends AppCompatActivity {
     private ImageView R_Circle;
     private ImageView L_Circle;
 
+    boolean leftCircle = true;
 
-    String answer = "answers";
     int count;
     Boolean gameRunning = false;
-//    Boolean myTurn = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +56,15 @@ public class Game1 extends AppCompatActivity {
 
 
         categoryText.setText("Category: Movies");
-//        answersDisplay.setText(answer);
         answerText.setHint("Answer");
 
         fiveSecondTimer.start();
+
         gameRunning = true;
 
         // Hide L_circle
-        L_Circle.setVisibility(View.VISIBLE);
+        L_Circle.setVisibility(View.VISIBLE); // start with L
+
         R_Circle.setVisibility(View.INVISIBLE);
 
         updateAnswer();
@@ -77,16 +77,11 @@ public class Game1 extends AppCompatActivity {
             answerText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    // display new answer
-//                    answer += "\n" + answerText.getText().toString() + "\n";
+                    // Update answer
                     answersDisplay.append(answerText.getText().toString() + " ");
-//                    answersDisplay.setText(answer);
-
-                    // swicth players
-                    // change yellow circle display
-
-                    // clear text
+                    // swicth player, change yellow circle display, and clear text
                     reset();
+                    leftCircle = !leftCircle;
 
                     return true;
                 }
@@ -105,23 +100,21 @@ public class Game1 extends AppCompatActivity {
             int seconds = (int) (millisUntilFinished / 1000) % 60;
 
             String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
-//            answersDisplay.setText(answer);
 
             ImageView timesUp = findViewById(R.id.timesUp);
 
             timesUp.setVisibility(View.INVISIBLE);
 
             timerText.setText(timeFormatted);
+
+
             if (count == 0) {
                 gameRunning = false;
                 timesUp.setVisibility(View.VISIBLE);
 
                 // Current player loses
             }
-
-
         }
-
 
         public void onFinish() {
             // call function to display text and reset things
@@ -204,7 +197,9 @@ public class Game1 extends AppCompatActivity {
     private void reset() {
         answerText.setText("");
 
-        if (L_Circle.getVisibility() == View.VISIBLE) {
+
+        fiveSecondTimer.start();         // reset timer
+        if (leftCircle) {
             R_Circle.setVisibility(View.VISIBLE);
             L_Circle.setVisibility(View.INVISIBLE);
         } else {
@@ -213,15 +208,11 @@ public class Game1 extends AppCompatActivity {
         }
 
 
-        // reset timer
-        fiveSecondTimer.start();
-
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        updateAnswer();
 
     }
 
