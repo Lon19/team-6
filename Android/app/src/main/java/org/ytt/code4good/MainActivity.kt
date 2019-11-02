@@ -45,11 +45,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<BottomNavigationView>(R.id.bottom_nav).apply {
             setOnNavigationItemSelectedListener {
-                when (it.itemId) {
-                    R.id.action_task -> viewPager.currentItem = 0
-                    R.id.action_game -> viewPager.currentItem = 1
-                    R.id.action_chat -> viewPager.currentItem = 2
-                    else -> viewPager.currentItem = 3
+                viewPager.currentItem = when (it.itemId) {
+                    R.id.action_task -> 0
+                    R.id.action_game -> 1
+                    R.id.action_chat -> 2
+                    else -> 3
                 }
 
                 true
@@ -97,9 +97,9 @@ class MainActivity : AppCompatActivity() {
         override fun getItem(position: Int): Fragment {
             return when (position) {
                 0 -> TaskFragment()
-                1 -> GameFragment()
+                1 -> GameFragment(application)
                 2 -> ChatFragment(application)
-                else -> Fragment() // TODO Room
+                else -> RoomFragment()
             }
         }
 

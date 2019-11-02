@@ -27,5 +27,6 @@
         </activity>
         <activity android:name=".InitActivity" />
         <activity android:name=".DailyActivity" />
+        <activity android:name=".ChatDetailActivity"/>
     </application>
 </manifest>

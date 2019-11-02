@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import org.ytt.code4good.viewModels.GameViewModel
 
-class GameFragment : Fragment() {
+class GameFragment(private val application: Application) : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,8 +27,8 @@ class GameFragment : Fragment() {
 
         val viewPager = view.findViewById<ViewPager>(R.id.view_pager_inner).also {
             it.adapter = MyFragmentPagerAdapter(
-                activity!!.application,
-                activity!!.supportFragmentManager
+                application,
+                childFragmentManager
             )
         }
 

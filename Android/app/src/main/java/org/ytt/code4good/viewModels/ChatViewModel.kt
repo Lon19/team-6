@@ -19,5 +19,7 @@ data class ChatViewModel(
     var detail: String,
     var time: String
 ) : AndroidViewModel(app) {
+    val convo = listOf<ChatViewModel>()
+
     fun getDrawable() = ContextCompat.getDrawable(getApplication(), imageSrc)
 }
