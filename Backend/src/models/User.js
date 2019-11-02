@@ -23,8 +23,9 @@ class User {
 }
 
 function fromJSON(user) {
-  console.log(user)
   const { name, age, cancerBefore, interests, relateToCancer, socketId } = user
+
+  // // TODO validation
   // if (!name || !age || !cancerBefore || !interests || !relateToCancer || !socketId)
   //   return false;
 

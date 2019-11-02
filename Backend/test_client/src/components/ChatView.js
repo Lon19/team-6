@@ -3,11 +3,6 @@ import { BottomNavigation, TextField, Grid } from '@material-ui/core';
 
 export default class ChatView extends Component {
 
-  constructor(props) {
-    super(props)
-    console.log(props.otherSocketId)
-  }
-
   state = {
     history: [],
     message: ''
@@ -15,10 +10,10 @@ export default class ChatView extends Component {
 
   componentDidMount() {
     this.props.getSocket().on('response', ({ from, message }) => {
-      console.log('Message received', message)
-      const { history } = this.state
-      const newHistory = [...history,  { type: 'incoming', payload: message }]
-      this.setState({ history: newHistory })
+      const history = [...this.state.history, {
+        type: 'incoming', payload: message
+      }]
+      this.setState({ history })
     })
   }
  
