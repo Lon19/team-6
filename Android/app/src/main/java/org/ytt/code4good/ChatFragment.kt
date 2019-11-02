@@ -1,45 +1,45 @@
-/*
- * Created by Yip Tsz To on 11/2/19 2:01 AM
- * Copyright (c) 2019.
- */
-
 package org.ytt.code4good
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import org.ytt.code4good.databinding.ListItemWithImageBinding
 import org.ytt.code4good.viewModels.ChatViewModel
 
-class ChatActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+class ChatFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.frag_chat, container, false)
 
-        val viewManager = LinearLayoutManager(this)
-        val viewAdapter =
-            Adapter(List(10) {
-                ChatViewModel(
-                    application,
-                    R.drawable.head_placeholder,
-                    "I go to school by bus"
-                )
-            })
+        val viewManager = LinearLayoutManager(activity)
+        val viewAdapter = ChatAdapter(List(10) {
+            ChatViewModel(
+                activity!!.application,
+                R.drawable.head_placeholder,
+                "I go to school by bus"
+            )
+        })
 
-        findViewById<RecyclerView>(R.id.view_list).apply {
-            setHasFixedSize(true)
+        view.findViewById<RecyclerView>(R.id.view_list).also {
+            it.setHasFixedSize(true)
 
-            layoutManager = viewManager
+            it.layoutManager = viewManager
 
-            adapter = viewAdapter
+            it.adapter = viewAdapter
         }
+
+        return view
     }
 
-    private class Adapter(val data: List<ChatViewModel>) :
-        RecyclerView.Adapter<Adapter.MyViewHolder>() {
+    private class ChatAdapter(val data: List<ChatViewModel>) :
+        RecyclerView.Adapter<ChatAdapter.MyViewHolder>() {
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val needInit = needInit()
 
         if (needInit()) {
-            // Intent to init activity
+            // TODO Intent to init activity
         }
 
         /*val viewManager = LinearLayoutManager(this)
@@ -98,10 +98,10 @@ class MainActivity : AppCompatActivity() {
     private class MyMainViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return when (position) {
-                0 -> TaskFragment() // Task
+                0 -> TaskFragment()
                 1 -> GameFragment()
-                2 -> Fragment() // Chat
-                else -> Fragment() // Room
+                2 -> ChatFragment()
+                else -> Fragment() // TODO Room
             }
         }
 
