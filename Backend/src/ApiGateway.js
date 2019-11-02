@@ -13,12 +13,12 @@ function initialise(app, users) {
   // On register new user
   app.post('/user', (req, res) => {
     const user = req.body
-    console.log(user)
+    console.log('User body', user)
     const parsedUser = User.fromJSON(user)
     if (!parsedUser)
       return res.status(400).json({ message: 'Bad details'})
     
-    console.log(parsedUser)
+    users[parsedUser.socketId] = parsedUser
     return res.send('OK')
   })
   

@@ -3,26 +3,26 @@ function initialise(io, users) {
     .on('connection', socket => {
       console.log('Socket connected', socket.id) 
       
-      users[socket.id] = {}
+      socket.on('userChange', (_) => {
+        io.emit('userChange', Object.values(users).map(user => user.toJSON()))
+      })
+
+      socket.on('invite', ({ to: userId }) => {
+        io.to(userId).emit('invite', ({ from: socket.id }))
+      })
 
       // update name
       socket.on('updateName', ({ name }) => {
         users[socket.id].name = name
       })
 
-      socket.on('sendMsg', ({ to, message}) => {
-        console.log(`From ${socket.id} received message ${message}`)
+      socket.on('sendMsg', ({ to: userId, message}) => {
+        console.log(`From ${socket.id} to ${userId} received message ${message}`)
 
-        for (let [userId, _] of Object.entries(users)) {
-          if (userId === socket.id)
-            continue
-
-          console.log(`Sending to ${userId}`)
-          io.to(userId).emit('response', {
-            from: 'TODO name',
-            message: message
-          })
-        }
+        io.to(userId).emit('response', {
+          from: users[socket.id].name,
+          message: message
+        })
       })
 
       socket.on('disconnect', () => {
