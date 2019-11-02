@@ -1,3 +1,8 @@
+<!--
+  ~ Created by Yip Tsz To on 11/2/19 2:01 AM
+  ~ Copyright (c) 2019.
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
@@ -8,4 +13,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar" />
 </resources>

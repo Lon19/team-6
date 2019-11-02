@@ -1,5 +1,5 @@
 /*
- * Created by Yip Tsz To on 11/1/19 10:24 PM
+ * Created by Yip Tsz To on 11/2/19 2:01 AM
  * Copyright (c) 2019.
  */
 
@@ -36,9 +36,6 @@ class ChatActivity : AppCompatActivity() {
 
             adapter = viewAdapter
         }
-
-
-//        val socket = IO.socket()
     }
 
     private class Adapter(val data: List<ChatViewModel>) :
